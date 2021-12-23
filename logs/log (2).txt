@@ -1,0 +1,397 @@
+***************
+** Arguments **
+***************
+USE_CUDA: True
+adam_beta1: 0.5
+backbone: resnet18
+batch_size: 128
+checkpoint_freq: 0
+dataset: pacs
+eval_only: False
+final_model: best_val
+gamma_for_lr: 0.1
+gpu: True
+init_weights: 
+load_epoch: None
+lr: 0.0001
+lr_scheduler: cosine
+max_epoch: 30
+model_dir: 
+n_domains: 2
+n_ins: 16
+no_test: False
+no_train: False
+optimizer: adam
+output_dir: output/cartoon_adam_ls2
+pretrained: True
+print_freq: 10
+resume: 
+root: ./data
+seed: 1
+source_domains: ['photo', 'sketch', 'art_painting']
+stepsize: 20
+target_domains: ['cartoon']
+test_split: all
+testsampler: SequentialSampler
+trainer: Mytrainer
+trainsampler: RandomDomainSampler
+verbose: True
+warmup_epoch: -1
+Building transform_train
++ resize to 224x224
++ random flip
++ random translation
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.0, 0.0, 0.0], std=[1.0, 1.0, 1.0])
+Building transform_test
++ resize to 224x224
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.0, 0.0, 0.0], std=[1.0, 1.0, 1.0])
+Compose(
+    Resize(size=(224, 224), interpolation=bilinear, max_size=None, antialias=None)
+    RandomHorizontalFlip(p=0.5)
+    <data.Random2DTranslation object at 0x7f0fd99e6410>
+    ToTensor()
+    Normalize(mean=[0.0, 0.0, 0.0], std=[1.0, 1.0, 1.0])
+)
+***** Dataset statistics *****
+  Dataset: pacs
+  Source domains: ['photo', 'sketch', 'art_painting']
+  Target domains: ['cartoon']
+  # classes: 7
+  # train_x: 6,869
+  # val: 777
+  # test: 2,344
+Building model
+Insert MixStyle after ['layer2']
+# params: 11,180,103
+No checkpoint found, train from scratch
+epoch [1/30][10/36]	time 1.097 (1.503)	data 0.216 (0.216)	eta 0:26:48	loss 0.7604 (1.3577)	acc 84.3750 (67.3438)	lr 0.0001
+epoch [1/30][20/36]	time 1.105 (1.298)	data 0.220 (0.215)	eta 0:22:56	loss 0.6629 (0.9941)	acc 82.8125 (78.5938)	lr 0.0001
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 657
+* accuracy: 84.56%
+* error: 15.44%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [2/30][10/36]	time 1.141 (1.253)	data 0.262 (0.369)	eta 0:21:35	loss 0.2590 (0.3761)	acc 92.1875 (94.2969)	lr 0.0001
+epoch [2/30][20/36]	time 1.104 (1.179)	data 0.215 (0.294)	eta 0:20:06	loss 0.3099 (0.3306)	acc 94.5312 (95.2344)	lr 0.0001
+epoch [2/30][30/36]	time 1.076 (1.154)	data 0.196 (0.268)	eta 0:19:29	loss 0.1973 (0.3210)	acc 99.2188 (95.1302)	lr 0.0001
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 698
+* accuracy: 89.83%
+* error: 10.17%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [3/30][10/36]	time 1.145 (1.251)	data 0.250 (0.358)	eta 0:20:48	loss 0.2871 (0.2200)	acc 97.6562 (98.2812)	lr 0.0001
+epoch [3/30][20/36]	time 1.098 (1.177)	data 0.210 (0.285)	eta 0:19:23	loss 0.0984 (0.1996)	acc 99.2188 (98.2422)	lr 0.0001
+epoch [3/30][30/36]	time 1.082 (1.156)	data 0.185 (0.264)	eta 0:18:50	loss 0.3028 (0.2038)	acc 98.4375 (97.8125)	lr 0.0001
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 692
+* accuracy: 89.06%
+* error: 10.94%
+curr_result
+epoch [4/30][10/36]	time 1.113 (1.218)	data 0.224 (0.329)	eta 0:19:32	loss 0.1190 (0.1508)	acc 100.0000 (98.6719)	lr 9.972609476841367e-05
+epoch [4/30][20/36]	time 1.109 (1.171)	data 0.216 (0.283)	eta 0:18:35	loss 0.1320 (0.1357)	acc 98.4375 (98.5156)	lr 9.972609476841367e-05
+epoch [4/30][30/36]	time 1.148 (1.158)	data 0.259 (0.269)	eta 0:18:10	loss 0.2070 (0.1399)	acc 99.2188 (98.8542)	lr 9.972609476841367e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 723
+* accuracy: 93.05%
+* error: 6.95%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [5/30][10/36]	time 1.323 (1.249)	data 0.433 (0.359)	eta 0:19:16	loss 0.1568 (0.1289)	acc 99.2188 (98.5938)	lr 9.890738003669029e-05
+epoch [5/30][20/36]	time 1.118 (1.190)	data 0.222 (0.300)	eta 0:18:10	loss 0.0697 (0.1262)	acc 100.0000 (99.0625)	lr 9.890738003669029e-05
+epoch [5/30][30/36]	time 1.173 (1.170)	data 0.274 (0.278)	eta 0:17:39	loss 0.0757 (0.1157)	acc 100.0000 (99.1927)	lr 9.890738003669029e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 717
+* accuracy: 92.28%
+* error: 7.72%
+curr_result
+epoch [6/30][10/36]	time 1.093 (1.214)	data 0.208 (0.322)	eta 0:18:00	loss 0.1386 (0.0862)	acc 100.0000 (99.0625)	lr 9.755282581475769e-05
+epoch [6/30][20/36]	time 1.108 (1.167)	data 0.218 (0.275)	eta 0:17:07	loss 0.0727 (0.0839)	acc 100.0000 (99.1797)	lr 9.755282581475769e-05
+epoch [6/30][30/36]	time 1.110 (1.151)	data 0.212 (0.260)	eta 0:16:41	loss 0.1417 (0.0863)	acc 100.0000 (99.1406)	lr 9.755282581475769e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 730
+* accuracy: 93.95%
+* error: 6.05%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [7/30][10/36]	time 1.158 (1.276)	data 0.258 (0.382)	eta 0:18:09	loss 0.0508 (0.0486)	acc 100.0000 (99.5312)	lr 9.567727288213003e-05
+epoch [7/30][20/36]	time 1.123 (1.199)	data 0.228 (0.307)	eta 0:16:52	loss 0.1066 (0.0499)	acc 100.0000 (99.6484)	lr 9.567727288213003e-05
+epoch [7/30][30/36]	time 1.132 (1.176)	data 0.242 (0.285)	eta 0:16:21	loss 0.0474 (0.0605)	acc 98.4375 (99.5833)	lr 9.567727288213003e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 731
+* accuracy: 94.08%
+* error: 5.92%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [8/30][10/36]	time 1.131 (1.249)	data 0.249 (0.361)	eta 0:17:01	loss 0.0171 (0.0640)	acc 100.0000 (99.9219)	lr 9.567727288213003e-05
+epoch [8/30][20/36]	time 1.056 (1.170)	data 0.175 (0.281)	eta 0:15:45	loss 0.0569 (0.0561)	acc 100.0000 (99.7266)	lr 9.567727288213003e-05
+epoch [8/30][30/36]	time 1.102 (1.143)	data 0.229 (0.254)	eta 0:15:12	loss 0.0421 (0.0528)	acc 100.0000 (99.4531)	lr 9.567727288213003e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 727
+* accuracy: 93.56%
+* error: 6.44%
+curr_result
+epoch [9/30][10/36]	time 1.101 (1.207)	data 0.211 (0.318)	eta 0:15:43	loss 0.0858 (0.0653)	acc 100.0000 (99.6875)	lr 9.567727288213003e-05
+epoch [9/30][20/36]	time 1.112 (1.158)	data 0.228 (0.268)	eta 0:14:54	loss 0.0301 (0.0635)	acc 100.0000 (99.5312)	lr 9.567727288213003e-05
+epoch [9/30][30/36]	time 1.110 (1.140)	data 0.224 (0.249)	eta 0:14:28	loss 0.0377 (0.0664)	acc 100.0000 (99.4792)	lr 9.567727288213003e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 719
+* accuracy: 92.54%
+* error: 7.46%
+curr_result
+epoch [10/30][10/36]	time 1.123 (1.206)	data 0.225 (0.315)	eta 0:14:59	loss 0.0365 (0.0470)	acc 100.0000 (99.7656)	lr 9.567727288213003e-05
+epoch [10/30][20/36]	time 1.163 (1.158)	data 0.256 (0.267)	eta 0:14:12	loss 0.0665 (0.0540)	acc 100.0000 (99.5312)	lr 9.567727288213003e-05
+epoch [10/30][30/36]	time 1.056 (1.139)	data 0.173 (0.248)	eta 0:13:46	loss 0.0571 (0.0477)	acc 100.0000 (99.6094)	lr 9.567727288213003e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 732
+* accuracy: 94.21%
+* error: 5.79%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [11/30][10/36]	time 1.572 (1.237)	data 0.687 (0.350)	eta 0:14:38	loss 0.0043 (0.0435)	acc 98.4375 (99.5312)	lr 9.567727288213003e-05
+epoch [11/30][20/36]	time 1.075 (1.174)	data 0.180 (0.285)	eta 0:13:41	loss 0.0229 (0.0341)	acc 99.2188 (99.7266)	lr 9.567727288213003e-05
+epoch [11/30][30/36]	time 1.115 (1.145)	data 0.216 (0.256)	eta 0:13:10	loss 0.0219 (0.0375)	acc 98.4375 (99.6354)	lr 9.567727288213003e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 724
+* accuracy: 93.18%
+* error: 6.82%
+curr_result
+epoch [12/30][10/36]	time 1.156 (1.195)	data 0.260 (0.304)	eta 0:13:25	loss 0.0059 (0.0261)	acc 100.0000 (99.7656)	lr 9.567727288213003e-05
+epoch [12/30][20/36]	time 1.092 (1.140)	data 0.197 (0.250)	eta 0:12:36	loss 0.0512 (0.0370)	acc 98.4375 (99.6484)	lr 9.567727288213003e-05
+epoch [12/30][30/36]	time 1.102 (1.127)	data 0.211 (0.237)	eta 0:12:16	loss 0.0433 (0.0373)	acc 99.2188 (99.6094)	lr 9.567727288213003e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 727
+* accuracy: 93.56%
+* error: 6.44%
+curr_result
+epoch [13/30][10/36]	time 1.048 (1.196)	data 0.169 (0.309)	eta 0:12:42	loss 0.0323 (0.0336)	acc 99.2188 (99.5312)	lr 9.567727288213003e-05
+epoch [13/30][20/36]	time 1.111 (1.149)	data 0.217 (0.261)	eta 0:12:01	loss 0.0288 (0.0364)	acc 98.4375 (99.5703)	lr 9.567727288213003e-05
+epoch [13/30][30/36]	time 1.119 (1.138)	data 0.230 (0.248)	eta 0:11:43	loss 0.0555 (0.0376)	acc 100.0000 (99.6615)	lr 9.567727288213003e-05
+epoch [13/30][40/36]	time 1.130 (1.128)	data 0.242 (0.239)	eta 0:11:25	loss 0.0024 (0.0344)	acc 100.0000 (99.6680)	lr 9.330127018922194e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 741
+* accuracy: 95.37%
+* error: 4.63%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [14/30][10/36]	time 1.169 (1.244)	data 0.288 (0.351)	eta 0:12:28	loss 0.0072 (0.0317)	acc 100.0000 (99.9219)	lr 9.330127018922194e-05
+epoch [14/30][20/36]	time 1.091 (1.173)	data 0.208 (0.283)	eta 0:11:34	loss 0.0104 (0.0258)	acc 100.0000 (99.9609)	lr 9.330127018922194e-05
+epoch [14/30][30/36]	time 1.111 (1.147)	data 0.223 (0.257)	eta 0:11:07	loss 0.0089 (0.0285)	acc 100.0000 (99.8698)	lr 9.330127018922194e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 731
+* accuracy: 94.08%
+* error: 5.92%
+curr_result
+epoch [15/30][10/36]	time 1.137 (1.198)	data 0.254 (0.312)	eta 0:11:17	loss 0.0496 (0.0370)	acc 100.0000 (99.9219)	lr 9.330127018922194e-05
+epoch [15/30][20/36]	time 1.097 (1.149)	data 0.211 (0.261)	eta 0:10:38	loss 0.0044 (0.0344)	acc 100.0000 (99.9219)	lr 9.330127018922194e-05
+epoch [15/30][30/36]	time 1.037 (1.139)	data 0.151 (0.250)	eta 0:10:21	loss 0.0521 (0.0280)	acc 100.0000 (99.8958)	lr 9.330127018922194e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 727
+* accuracy: 93.56%
+* error: 6.44%
+curr_result
+epoch [16/30][10/36]	time 1.166 (1.216)	data 0.273 (0.327)	eta 0:10:44	loss 0.0546 (0.0333)	acc 100.0000 (99.9219)	lr 9.330127018922194e-05
+epoch [16/30][20/36]	time 1.126 (1.156)	data 0.249 (0.268)	eta 0:10:01	loss 0.0147 (0.0285)	acc 100.0000 (99.7266)	lr 9.330127018922194e-05
+epoch [16/30][30/36]	time 1.134 (1.137)	data 0.232 (0.248)	eta 0:09:39	loss 0.0049 (0.0276)	acc 100.0000 (99.7396)	lr 9.330127018922194e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 730
+* accuracy: 93.95%
+* error: 6.05%
+curr_result
+epoch [17/30][10/36]	time 1.104 (1.201)	data 0.205 (0.312)	eta 0:09:53	loss 0.1012 (0.0347)	acc 99.2188 (99.6094)	lr 9.330127018922194e-05
+epoch [17/30][20/36]	time 1.041 (1.150)	data 0.165 (0.260)	eta 0:09:16	loss 0.0232 (0.0333)	acc 100.0000 (99.7656)	lr 9.330127018922194e-05
+epoch [17/30][30/36]	time 1.091 (1.134)	data 0.211 (0.246)	eta 0:08:57	loss 0.0097 (0.0281)	acc 100.0000 (99.8177)	lr 9.330127018922194e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 736
+* accuracy: 94.72%
+* error: 5.28%
+curr_result
+epoch [18/30][10/36]	time 1.076 (1.203)	data 0.185 (0.314)	eta 0:09:11	loss 0.0133 (0.0208)	acc 100.0000 (99.6875)	lr 9.045084971874738e-05
+epoch [18/30][20/36]	time 1.173 (1.154)	data 0.280 (0.262)	eta 0:08:36	loss 0.0030 (0.0227)	acc 100.0000 (99.6875)	lr 9.045084971874738e-05
+epoch [18/30][30/36]	time 1.139 (1.140)	data 0.250 (0.250)	eta 0:08:19	loss 0.0384 (0.0249)	acc 100.0000 (99.7396)	lr 9.045084971874738e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 727
+* accuracy: 93.56%
+* error: 6.44%
+curr_result
+epoch [19/30][10/36]	time 1.144 (1.209)	data 0.262 (0.322)	eta 0:08:30	loss 0.0251 (0.0265)	acc 100.0000 (99.7656)	lr 9.045084971874738e-05
+epoch [19/30][20/36]	time 1.114 (1.165)	data 0.236 (0.278)	eta 0:07:59	loss 0.0243 (0.0263)	acc 98.4375 (99.6484)	lr 9.045084971874738e-05
+epoch [19/30][30/36]	time 1.105 (1.152)	data 0.215 (0.265)	eta 0:07:43	loss 0.0038 (0.0246)	acc 99.2188 (99.7135)	lr 9.045084971874738e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 724
+* accuracy: 93.18%
+* error: 6.82%
+curr_result
+epoch [20/30][10/36]	time 1.108 (1.208)	data 0.230 (0.320)	eta 0:07:46	loss 0.0275 (0.0297)	acc 100.0000 (99.9219)	lr 9.045084971874738e-05
+epoch [20/30][20/36]	time 1.132 (1.174)	data 0.232 (0.284)	eta 0:07:21	loss 0.0524 (0.0249)	acc 100.0000 (99.9609)	lr 9.045084971874738e-05
+epoch [20/30][30/36]	time 1.115 (1.157)	data 0.229 (0.267)	eta 0:07:03	loss 0.0085 (0.0228)	acc 100.0000 (99.9219)	lr 9.045084971874738e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 732
+* accuracy: 94.21%
+* error: 5.79%
+curr_result
+epoch [21/30][10/36]	time 1.127 (1.194)	data 0.237 (0.307)	eta 0:06:58	loss 0.0203 (0.0155)	acc 100.0000 (99.6875)	lr 8.715724127386972e-05
+epoch [21/30][20/36]	time 1.141 (1.160)	data 0.235 (0.269)	eta 0:06:34	loss 0.0234 (0.0272)	acc 100.0000 (99.7266)	lr 8.715724127386972e-05
+epoch [21/30][30/36]	time 1.125 (1.141)	data 0.224 (0.250)	eta 0:06:16	loss 0.0217 (0.0285)	acc 100.0000 (99.7396)	lr 8.715724127386972e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 730
+* accuracy: 93.95%
+* error: 6.05%
+curr_result
+epoch [22/30][10/36]	time 1.138 (1.204)	data 0.251 (0.309)	eta 0:06:17	loss 0.0036 (0.0195)	acc 100.0000 (99.7656)	lr 8.715724127386972e-05
+epoch [22/30][20/36]	time 1.090 (1.158)	data 0.203 (0.267)	eta 0:05:52	loss 0.0154 (0.0223)	acc 100.0000 (99.8438)	lr 8.715724127386972e-05
+epoch [22/30][30/36]	time 1.048 (1.141)	data 0.166 (0.251)	eta 0:05:35	loss 0.0319 (0.0218)	acc 100.0000 (99.8958)	lr 8.715724127386972e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 738
+* accuracy: 94.98%
+* error: 5.02%
+curr_result
+epoch [23/30][10/36]	time 1.130 (1.199)	data 0.250 (0.308)	eta 0:05:33	loss 0.0033 (0.0113)	acc 100.0000 (99.6875)	lr 8.345653031794292e-05
+epoch [23/30][20/36]	time 1.198 (1.175)	data 0.317 (0.286)	eta 0:05:15	loss 0.0019 (0.0122)	acc 100.0000 (99.7266)	lr 8.345653031794292e-05
+epoch [23/30][30/36]	time 1.172 (1.164)	data 0.279 (0.275)	eta 0:05:00	loss 0.0076 (0.0105)	acc 100.0000 (99.7917)	lr 8.345653031794292e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 738
+* accuracy: 94.98%
+* error: 5.02%
+curr_result
+epoch [24/30][10/36]	time 1.102 (1.221)	data 0.221 (0.335)	eta 0:04:55	loss 0.0165 (0.0106)	acc 99.2188 (99.8438)	lr 8.345653031794292e-05
+epoch [24/30][20/36]	time 1.210 (1.177)	data 0.308 (0.289)	eta 0:04:33	loss 0.0206 (0.0101)	acc 100.0000 (99.9219)	lr 8.345653031794292e-05
+epoch [24/30][30/36]	time 1.142 (1.159)	data 0.250 (0.271)	eta 0:04:17	loss 0.0030 (0.0128)	acc 100.0000 (99.9219)	lr 8.345653031794292e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 739
+* accuracy: 95.11%
+* error: 4.89%
+curr_result
+epoch [25/30][10/36]	time 1.072 (1.203)	data 0.185 (0.317)	eta 0:04:07	loss 0.0015 (0.0077)	acc 100.0000 (100.0000)	lr 7.938926261462366e-05
+epoch [25/30][20/36]	time 1.156 (1.169)	data 0.256 (0.282)	eta 0:03:49	loss 0.0062 (0.0092)	acc 100.0000 (99.8828)	lr 7.938926261462366e-05
+epoch [25/30][30/36]	time 1.102 (1.152)	data 0.219 (0.266)	eta 0:03:34	loss 0.0079 (0.0103)	acc 100.0000 (99.8958)	lr 7.938926261462366e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 733
+* accuracy: 94.34%
+* error: 5.66%
+curr_result
+epoch [26/30][10/36]	time 1.113 (1.214)	data 0.225 (0.322)	eta 0:03:26	loss 0.0077 (0.0118)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+epoch [26/30][20/36]	time 1.118 (1.168)	data 0.235 (0.276)	eta 0:03:06	loss 0.0030 (0.0111)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 743
+* accuracy: 95.62%
+* error: 4.38%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model-best.pth.tar"
+epoch [27/30][10/36]	time 1.143 (1.238)	data 0.259 (0.351)	eta 0:02:45	loss 0.0043 (0.0128)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+epoch [27/30][20/36]	time 1.142 (1.181)	data 0.253 (0.294)	eta 0:02:26	loss 0.0025 (0.0112)	acc 100.0000 (99.8828)	lr 7.500000000000001e-05
+epoch [27/30][30/36]	time 1.090 (1.157)	data 0.201 (0.269)	eta 0:02:11	loss 0.0125 (0.0102)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 730
+* accuracy: 93.95%
+* error: 6.05%
+curr_result
+epoch [28/30][10/36]	time 1.105 (1.178)	data 0.215 (0.288)	eta 0:01:55	loss 0.0122 (0.0155)	acc 100.0000 (100.0000)	lr 7.500000000000001e-05
+epoch [28/30][20/36]	time 1.091 (1.138)	data 0.201 (0.249)	eta 0:01:40	loss 0.0120 (0.0127)	acc 100.0000 (100.0000)	lr 7.500000000000001e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 730
+* accuracy: 93.95%
+* error: 6.05%
+curr_result
+epoch [29/30][10/36]	time 1.112 (1.196)	data 0.223 (0.307)	eta 0:01:14	loss 0.0061 (0.0097)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+epoch [29/30][20/36]	time 1.105 (1.144)	data 0.215 (0.254)	eta 0:00:59	loss 0.0019 (0.0098)	acc 100.0000 (99.9609)	lr 7.500000000000001e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 737
+* accuracy: 94.85%
+* error: 5.15%
+curr_result
+epoch [30/30][10/36]	time 1.139 (1.200)	data 0.255 (0.315)	eta 0:00:31	loss 0.0010 (0.0114)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+epoch [30/30][20/36]	time 1.123 (1.151)	data 0.227 (0.264)	eta 0:00:18	loss 0.0040 (0.0114)	acc 100.0000 (99.9219)	lr 7.500000000000001e-05
+epoch [30/30][30/36]	time 1.130 (1.136)	data 0.235 (0.248)	eta 0:00:06	loss 0.0267 (0.0115)	acc 100.0000 (99.8698)	lr 7.500000000000001e-05
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 737
+* accuracy: 94.85%
+* error: 5.15%
+curr_result
+Checkpoint saved to "output/cartoon_adam_ls2/F/model.pth.tar-30"
+Finished training
+Do evaluation on test set
+=> result
+* total: 2,344
+* correct: 1,848
+* accuracy: 78.84%
+* error: 21.16%
+before loading the best val model
+Do evaluation on crossval set
+=> result
+* total: 777
+* correct: 737
+* accuracy: 94.85%
+* error: 5.15%
+Deploy the model with the best val performance
+Loading weights to F from "output/cartoon_adam_ls2/F/model-best.pth.tar" (epoch = 26)
+Do evaluation on test set
+=> result
+* total: 2,344
+* correct: 1,850
+* accuracy: 78.92%
+* error: 21.08%
+Elapsed: 0:22:27
